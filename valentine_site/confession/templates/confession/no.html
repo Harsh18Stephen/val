@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Still Smiling 😊</title>
+    <link rel="stylesheet" href="{% static 'confession/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="card">
+    <h1>That’s okay 💛</h1>
+
+    <p>
+        I’m still really glad I asked.<br>
+        You’re amazing, always.
+    </p>
+
+    <p>
+        (But… are you sure? 😏)
+    </p>
+</div>
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+{% load static %}
+
+<div id="music-player">
+    <button id="music-btn">🔈</button>
+    <audio id="bg-music" loop>
+        <source src="{% static 'confession/soft-music.mp3' %}" type="audio/mpeg">
+    </audio>
+</div>
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+
+let isPlaying = false;
+
+btn.addEventListener("click", () => {
+    if (!isPlaying) {
+        music.volume = 0.4;
+        music.play();
+        btn.innerText = "🔊";
+        isPlaying = true;
+    } else {
+        music.pause();
+        btn.innerText = "🔈";
+        isPlaying = false;
+    }
+});
+</script>
+
+</body>
+</html>

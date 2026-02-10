@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="{% static 'confession/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="meow" >
+    
+<div class="card-group" >
+
+    <div class="note-card">
+    <div class="note-title">🌸 A random thought</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        I smile more than I should whenever I see your name pop up.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">🫶 Something small</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        You have this calm energy that makes things feel lighter.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">✨ Just saying</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        Talking to you never feels forced. It feels… easy.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">🌙 Late thought</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        You cross my mind more often than you probably should.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">☁️ Not a big deal</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        But somehow, your presence makes moments feel better.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">💭 An observation</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        You have a way of making silence feel comfortable.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">🌷 Honestly</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        I find myself looking forward to our conversations.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">🕊️ Quiet truth</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        Being around you feels like a safe place.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">💗 A feeling</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        You make ordinary moments feel a little special.
+    </div>
+</div>
+
+<div class="note-card">
+    <div class="note-title">🌟 Final thought</div>
+    <button class="open-btn">Open this note 💌</button>
+    <div class="note-content">
+        I wanted you to know… you matter to me.
+    </div>
+</div>
+
+</div>
+
+
+<div class="card">
+    <h1>Hey You 💕</h1>
+
+    <p>
+        I don’t know when it happened,<br>
+        but somehow you became my favorite thought.
+    </p>
+
+    <p>
+        You make normal days special<br>
+        and smiles come easier around you.
+    </p>
+
+    <h2>Will you go out with me? 🌹</h2>
+
+    <div class="buttons">
+        <a href="/yes/">
+            <button class="yes">YES 😍</button>
+        </a>
+        <button class="no" id="noBtn">NO 🙈</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 300 - 150;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+{% load static %}
+
+<div id="music-player">
+    <button id="music-btn">🔈</button>
+    <audio id="bg-music" loop>
+        <source src="{% static 'confession/soft-music.mp3' %}" type="audio/mpeg">
+    </audio>
+</div>
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+
+let isPlaying = false;
+
+btn.addEventListener("click", () => {
+    if (!isPlaying) {
+        music.volume = 0.4;
+        music.play();
+        btn.innerText = "🔊";
+        isPlaying = true;
+    } else {
+        music.pause();
+        btn.innerText = "🔈";
+        isPlaying = false;
+    }
+});
+</script>
+<script>
+const noteSound = document.getElementById("noteSound");
+
+document.querySelectorAll(".open-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const card = button.closest(".note-card");
+        const isOpening = !card.classList.contains("open");
+
+        card.classList.toggle("open");
+
+        button.textContent = card.classList.contains("open")
+            ? "Close note 💌"
+            : "Open this note 💌";
+
+        if (isOpening) {
+            noteSound.currentTime = 0;
+            noteSound.volume = 0.4; // soft & romantic
+            noteSound.play().catch(() => {});
+        }
+    });
+});
+</script>
+
+<audio id="noteSound" preload="auto">
+    <source src="{% static 'sounds/note-open.mp3' %}" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
