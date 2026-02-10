@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v01=^^gq00ywu09*n3a9wvf#*==@k+tcc$nbpkwm)%4bb6y8wo'
     
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'confession',
-    "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",  
 ]
 

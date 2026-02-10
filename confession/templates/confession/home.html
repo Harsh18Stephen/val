@@ -194,9 +194,7 @@ document.querySelectorAll(".open-btn").forEach(button => {
 });
 </script>
 
-<audio id="noteSound" preload="auto">
-    <source src="{% static 'sounds/note-open.mp3' %}" type="audio/mpeg">
-</audio>
+<audio id="noteSound" src="{% static 'sounds/note-open.mp3' %}" preload="auto"></audio>
 
 </body>
 </html>
